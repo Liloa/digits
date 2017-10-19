@@ -1,33 +1,32 @@
 <template name="Home_Page">
   <div class="ui container">
 
-    <table class="ui celled table">
-      <thead>
-      <tr><th>First</th>
-        <th>Last</th>
-        <th>Phone</th>
-      </tr></thead>
-      <tbody>
-      <tr>
-        <td>
-          John
-        </td>
-        <td>Kea</td>
-        <td>(808)425-2345</td>
-      </tr>
-      <tr>
-        <td>Weird</td>
-        <td>Al</td>
-        <td>(123)456-7890</td>
-      </tr>
-      <tr>
-        <td>Shea</td>
-        <td>Buttah</td>
-        <td>(808)555-1268</td>
-      </tr>
-      </tbody>
+    {{#if Template.subscriptionsReady}}
+      <table style="margin-top: 20px" class="ui celled table">
+        <thead>
+        <tr>
+          <th>Last</th>
+          <th>Address</th>
+          <th>Phone</th>
+          <th>Email</th>
+        </tr>
+        </thead>
 
-    </table>
-
+        <tbody>
+        {{#each contact in contactsList}}
+          <tr>
+            <td>{{contact.first}}</td>
+            <td>{{contact.last}}</td>
+            <td>{{contact.address}}</td>
+            <td>{{contact.telephone}}</td>
+            <td>{{contact.email}}</td>
+            <!--<td><a href="{{pathFor 'Edit_Stuff_Page' _id=stuff._id}}">Edit</a></td>-->
+          </tr>
+        {{/each}}
+        </tbody>
+      </table>
+    {{else}}
+      {{> Loading}}
+    {{/if}}
   </div>
 </template>
